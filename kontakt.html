@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ta kontakt med Fredrik Aasgaard – personlig trener i Oslo. Gratis og uforpliktende samtale.">
+  <title>Kontakt — Fredrik Aasgaard · Personlig Trener</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav" id="main-nav">
+  <h2>Fredrik Aasgaard</h2>
+  <ul>
+    <li><a href="index.html">Hjem</a></li>
+    <li><a href="ommeg.html">Om meg</a></li>
+    <li><a href="artikler.html">Artikler</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+</nav>
+
+<main>
+<header class="page-header" data-title="Kontakt">
+  <div class="page-header-text">
+    <div class="section-label">Kontakt</div>
+    <h1>La oss ta en <em>prat.</em></h1>
+    <p>Gratis og uforpliktende. Fortell meg litt om deg og hva du ønsker å oppnå.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="contact-layout">
+
+    <div class="contact-info">
+      <div class="section-label">Direktekontakt</div>
+      <p>Foretrekker du å ta kontakt direkte er du hjertelig velkommen til å sende en melding eller ringe. Jeg svarer normalt innen én arbeidsdag.</p>
+      <div class="contact-detail">
+        <a href="mailto:fredrik@eksempel.no">
+          <span>✉</span>
+          fredrik@eksempel.no
+        </a>
+        <a href="tel:+4700000000">
+          <span>✆</span>
+          +47 000 00 000
+        </a>
+        <a href="https://instagram.com/fredrikaasgaard" target="_blank">
+          <span>◈</span>
+          @fredrikaasgaard
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-group">
+        <label for="navn">Navn</label>
+        <input type="text" id="navn" name="navn" placeholder="Ditt navn" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="epost">E-post</label>
+        <input type="email" id="epost" name="epost" placeholder="din@epost.no" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="maal">Hva ønsker du å oppnå?</label>
+        <textarea id="maal" name="maal" placeholder="Fortell meg litt om deg selv og hva du jobber mot..."></textarea>
+      </div>
+      <button type="button" class="cta" onclick="sendSkjema()">Send melding</button>
+      <p class="form-notat">Skjemaet åpner e-postklienten din med utfylt melding.</p>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<footer>
+  <address>
+    <p>Fredrik Aasgaard · Personlig Trener</p>
+    <p>Oslo, Norge</p>
+  </address>
+  <p>© 2025</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  function sendSkjema() {
+    const navn  = document.getElementById('navn').value.trim();
+    const epost = document.getElementById('epost').value.trim();
+    const maal  = document.getElementById('maal').value.trim();
+
+    if (!navn || !epost || !maal) {
+      alert('Vennligst fyll ut alle feltene.');
+      return;
+    }
+
+    const emne  = encodeURIComponent('Henvendelse fra ' + navn);
+    const kropp = encodeURIComponent('Hei Fredrik,\n\n' + maal + '\n\nMed vennlig hilsen,\n' + navn + '\n' + epost);
+    window.location.href = 'mailto:fredrik@eksempel.no?subject=' + emne + '&body=' + kropp;
+  }
+</script>
+</body>
+</html>
