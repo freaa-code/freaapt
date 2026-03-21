@@ -2,6 +2,7 @@
 <html lang="no">
 <head>
   <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Lær mer om Fredrik Aasgaard – personlig trener i Oslo med erfaring innen styrketrening, fettforbrenning og online coaching.">
   <title>Om meg — Fredrik Aasgaard · Personlig Trener</title>
@@ -176,15 +177,17 @@
     <div class="video-kort reveal">
       <div class="video-wrapper" data-id="VIDEO_ID_1">
         <div class="video-fallback">
+          <div class="video-play">▶</div>
           <a href="https://www.youtube.com/watch?v=1lFSsfK-HZs" target="_blank" class="video-fallback-lenke">Åpne på YouTube</a>
         </div>
       </div>
-      <p class="video-tittel">Knebøy 10x10</p>
+      <p class="video-tittel">Tittel på klipp 1</p>
     </div>
 
     <div class="video-kort reveal">
       <div class="video-wrapper" data-id="VIDEO_ID_2">
         <div class="video-fallback">
+          <div class="video-play">▶</div>
           <a href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank" class="video-fallback-lenke">Åpne på YouTube</a>
         </div>
       </div>
@@ -194,6 +197,7 @@
     <div class="video-kort reveal">
       <div class="video-wrapper" data-id="VIDEO_ID_3">
         <div class="video-fallback">
+          <div class="video-play">▶</div>
           <a href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" class="video-fallback-lenke">Åpne på YouTube</a>
         </div>
       </div>
@@ -224,12 +228,24 @@
   document.querySelectorAll('.video-wrapper').forEach(wrapper => {
     const id = wrapper.dataset.id;
     if (!id || id.startsWith('VIDEO_ID')) return;
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/' + id;
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    wrapper.querySelector('.video-fallback').style.display = 'none';
-    wrapper.appendChild(iframe);
+
+    const fallback = wrapper.querySelector('.video-fallback');
+
+    // Sett thumbnail som bakgrunn
+    fallback.style.backgroundImage = 'url(https://img.youtube.com/vi/' + id + '/hqdefault.jpg)';
+    fallback.style.backgroundSize = 'cover';
+    fallback.style.backgroundPosition = 'center';
+
+    // Klikk på thumbnail → bytt til iframe
+    fallback.style.cursor = 'pointer';
+    fallback.addEventListener('click', function () {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      fallback.style.display = 'none';
+      wrapper.appendChild(iframe);
+    });
   });
 </script>
 </body>
