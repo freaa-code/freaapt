@@ -980,6 +980,8 @@ footer address {
 }
 
 @media (max-width: 480px) {
+   .utover-tall { font-size: 1.1rem; }
+.utover-tall-celle { padding: 12px 6px; }
   .nav h2 { font-size: 1rem; }
   .nav ul { gap: 1rem; }
   .nav ul a { font-size: 0.68rem; }
